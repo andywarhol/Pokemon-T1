@@ -9,9 +9,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.t1.requestedto.CreateUserRequest;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
+
 import lombok.Data;
 
-@Data
+
 @Table(name="users")
 public class UserEntity {
 	
@@ -19,24 +31,28 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name="user_name", length=30, unique=true)
-	private String userName;
-
-	@Column(name="user_pass", length=30)
-	private String userPass;
-
-	@Column(name="user_teamName")
-	private String userTeamName;
-
-	@Column(name="user_trainerName", length=30, unique=true)
-	private String userTrainerName;
-
-	@Column(name="user_rol")
-	private String userRol;
 	
-	@OneToMany (mappedBy = "user")
-	@JoinColumn(name="user_id")
-	private List<PokemonEntity> pkmTeam;
-
-
+	@Column(name="team_name", unique=true)
+	private String teamName;
+	
+	@Column(name="trainer_name", unique=true)
+	private String trainerName;
+	
+	@Column(name="rol")
+	private String rol;
+	
+	@Column(name="username", unique=true)
+	private String username;
+	
+	@Column(name="user_password")
+	private String password;
+	
+	public UserEntity(CreateUserRequest createUserRequest) {
+		this.teamName = createUserRequest.getTeamName();
+		this.trainerName = createUserRequest.getTrainerName();
+		this.rol = createUserRequest.getRol();
+		this.username = createUserRequest.getUsername();
+		this.password = createUserRequest.getPassword();
+	}
+	
 }
