@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.t1.entity.UserEntity;
+import com.t1.requestedto.CreateUserRequest;
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
@@ -30,6 +33,13 @@ public class UserController {
 		
 		return userResponseList;
 		
+	}
+	
+	@PostMapping("/create")
+	public UserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
+		UserEntity user = userService.createUser(createUserRequest);
+		
+		return new UserResponse(user);
 	}
 
 }

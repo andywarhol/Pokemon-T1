@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.t1.entity.UserEntity;
 import com.t1.repository.UserRepository;
+import com.t1.requestedto.CreateUserRequest;
 
 @Service
 public class UserService {
@@ -16,6 +17,14 @@ public class UserService {
 	
 	public List<UserEntity> getAllUsers() {
 		return userRepository.findAll();
+	}
+	
+	public UserEntity createUser(CreateUserRequest createUserRequest) {
+		UserEntity user = new UserEntity(createUserRequest);
+		
+		user = userRepository.save(user);
+		
+		return user;
 	}
 	
 }

@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.t1.requestedto.CreateUserRequest;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,6 +39,14 @@ public class UserEntity {
 	
 	@Column(name="user_password")
 	private String password;
+	
+	public UserEntity(CreateUserRequest createUserRequest) {
+		this.teamName = createUserRequest.getTeamName();
+		this.trainerName = createUserRequest.getTrainerName();
+		this.rol = createUserRequest.getRol();
+		this.username = createUserRequest.getUsername();
+		this.password = createUserRequest.getPassword();
+	}
 	
 }
 
