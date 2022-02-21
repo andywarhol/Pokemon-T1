@@ -1,4 +1,3 @@
-package com.t1.entity;
 
 import java.util.List;
 
