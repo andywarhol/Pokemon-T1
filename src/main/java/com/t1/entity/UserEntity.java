@@ -1,10 +1,12 @@
-package com.t1.entity;
+
+import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.t1.requestedto.CreateUserRequest;
@@ -18,12 +20,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
+
+import lombok.Data;
+
+
 @Table(name="users")
 public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	
 	@Column(name="team_name", unique=true)
 	private String teamName;
@@ -49,4 +56,3 @@ public class UserEntity {
 	}
 	
 }
-
