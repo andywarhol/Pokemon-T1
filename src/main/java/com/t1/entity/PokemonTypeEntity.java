@@ -14,6 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="pokemon_types")
+@Entity
 public class PokemonTypeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +24,9 @@ public class PokemonTypeEntity {
 	@Column(name="name_type")
 	private String pkmType;
 	
-	@ManyToOne
-	@JoinColumn(name = "pkm_type_id")
-	private PokemonEntity pkm;
+	//@ManyToOne
+	//@JoinColumn(name = "pkm_type_id")
+	//private PokemonEntity pkm;
 	
 	
 
