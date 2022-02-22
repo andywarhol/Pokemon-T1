@@ -1,5 +1,7 @@
 package com.t1.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="pokemon_types")
 public class PokemonTypeEntity {
@@ -23,9 +30,9 @@ public class PokemonTypeEntity {
 	@Column(name="name_type")
 	private String pkmType;
 	
-	@ManyToOne
-	@JoinColumn(name = "pkm_type_id")
-	private PokemonEntity pkm;
+	//@ManyToOne
+	//@JoinColumn(name = "pkm_type_id")
+	//private PokemonEntity pkm;
 	
 	
 
