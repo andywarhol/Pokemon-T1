@@ -1,5 +1,7 @@
 package com.t1.requestedto;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,5 +18,7 @@ public class CreateUserRequest {
 	private String username;
 	
 	private String password;
+	
+	private List<CreatePokemonRequest> pokemons;
 	
 }

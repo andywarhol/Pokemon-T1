@@ -26,12 +26,10 @@ public class PokemonEntity {
 	@Column(name="pkm_name")
 	private String pkmName;
 	
-
-	@OneToMany
-	private List<PokemonTypeEntity> types;
-	
 	@ManyToOne
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;
 
+	/*@OneToMany
+	private List<PokemonTypeEntity> types;*/
 }
