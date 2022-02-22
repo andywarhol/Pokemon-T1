@@ -31,7 +31,7 @@ public class GetUserByTokenController {
 	@GetMapping("/")
 	public ResponseEntity<ResponseDTO<UserResponseDTO>> getUserByToken(@RequestHeader(name = "Authorization") String token) {
 		String user =  jwtUtility.getUsernameFromToken(token.substring(6, token.length()));
-		UserEntity userEntity = userDetailsRepository.findByUserName(user);
+		UserEntity userEntity = userDetailsRepository.findByUsername(user);
 		UserResponseDTO userDto = userMapper.entityToDto(userEntity); 
 		ResponseDTO<UserResponseDTO> response = new ResponseDTO<UserResponseDTO>("the user by the token is", userDto);
 		return new ResponseEntity<>(response, HttpStatus.OK);

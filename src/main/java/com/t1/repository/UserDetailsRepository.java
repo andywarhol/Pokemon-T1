@@ -6,5 +6,5 @@ import com.t1.entity.UserEntity;
 
 public interface UserDetailsRepository extends JpaRepository<UserEntity, Long>{
 
-	UserEntity findByUserName(String userName);
+	UserEntity findByUsername(String username);
 }
