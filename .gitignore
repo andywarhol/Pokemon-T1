@@ -1,28 +1,6 @@
-<<<<<<< HEAD
-# Compiled class file
-*.class
 
-# Log file
-*.log
+application.properties
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-=======
 HELP.md
 .gradle
 build/
@@ -60,4 +38,3 @@ out/
 
 ### VS Code ###
 .vscode/
->>>>>>> 3f683750fbffad15685b8094b92b428901740e1d
