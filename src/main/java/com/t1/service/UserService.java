@@ -62,5 +62,10 @@ public class UserService {
 		return user;
 	}
 	
+	public String deleteStudent (UserEntity user) {
+		userRepository.delete(user);
+		return "Se ha borrado el usuario";
+	}
+	
 }
 
