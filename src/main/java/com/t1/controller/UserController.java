@@ -43,4 +43,8 @@ public class UserController {
 		return new UserResponse(user);
 	}
 
+	@GetMapping("/a")
+	public String a() {
+		return "aaaaaaaaaaaaaaa";
+	}
 }
