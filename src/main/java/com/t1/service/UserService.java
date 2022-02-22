@@ -31,6 +31,11 @@ public class UserService {
 	public List<UserEntity> getAllUsers() {
 		return userRepository.findAll();
 	}
+	
+	public List<UserEntity> getByUser(String username){
+		return userRepository.findByUsername(username);
+	}
+	
 
 	public UserEntity createUser(CreateUserRequest createUserRequest) {
 
