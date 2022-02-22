@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -16,15 +19,16 @@ import lombok.Data;
 @Table(name="pokemon_types")
 public class PokemonTypeEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_type")
 	private Long id;
 
 	@Column(name="name_type")
 	private String pkmType;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "pkm_type_id")
+	@JoinColumn(name="pkm_type_id")
 	private PokemonEntity pkm;
 
 }

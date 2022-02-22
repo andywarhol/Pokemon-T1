@@ -24,39 +24,21 @@ public class UserService {
 	
 	@Autowired
 	PokemonRepository pokemonRepository;
-	
+
 	@Autowired
 	PokemonTypeRepository pokemonTypeRepository;
-	
+
 	public List<UserEntity> getAllUsers() {
 		return userRepository.findAll();
 	}
 	
+	public List<UserEntity> getByUser(String username){
+		return userRepository.findByUsername(username);
+	}
+	
+
 	public UserEntity createUser(CreateUserRequest createUserRequest) {
-		/*UserEntity user = new UserEntity(createUserRequest);
-		
-		user = userRepository.save(user);
-		
-		List<PokemonEntity> pokemonList = new ArrayList<PokemonEntity>();
-		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
-		
-		if (createUserRequest.getPokemons() != null) {
-			
-			for(CreatePokemonRequest createPokemonRequest : createUserRequest.getPokemons()) {
-				PokemonEntity pokemon = new PokemonEntity();
-				pokemon.setPkmName(createPokemonRequest.getPkmName());
-				pokemon.setUser(user);
-				
-				pokemonList.add(pokemon);
-			}
-			
-			pokemonRepository.saveAll(pokemonList);
-		}
-		
-		user.setPkmTeam(pokemonList);
-		
-		return user;*/
-		
+
 		UserEntity user = new UserEntity(createUserRequest);
 
 		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
@@ -72,6 +54,8 @@ public class UserService {
 						tipoPKM.setPkmType(createType.getPkmType());
 						tipoPKM.setPkm(pokemon);
 						pokemonTypes.add(tipoPKM);
+
+						
 					}
 					
 				}
@@ -90,6 +74,5 @@ public class UserService {
 
 		return user;
 	}
-	
-}
 
+}

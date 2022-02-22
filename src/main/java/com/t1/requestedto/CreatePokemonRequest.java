@@ -11,7 +11,6 @@ public class CreatePokemonRequest {
 	
 	private String pkmName;
 	
-	//
 	private List<CreatePokemonTypeRequest> types;
 
 }
