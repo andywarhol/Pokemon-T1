@@ -30,25 +30,28 @@ import lombok.Data;
 @Table(name="users")
 public class UserEntity {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	
-	@Column(name="team_name", unique=true)
+	@Column(name="user_name", length=30, unique=true)
+	private String username;
+
+	@Column(name="user_pass", length=30)
+	private String password;
+
+	@Column(name="user_teamname")
 	private String teamName;
-	
-	@Column(name="trainer_name", unique=true)
+
+	@Column(name="user_trainername", length=30, unique=true)
 	private String trainerName;
-	
-	@Column(name="rol")
+
+	@Column(name="user_rol")
 	private String rol;
 	
-	@Column(name="username", unique=true)
-	private String username;
-	
-	@Column(name="user_password")
-	private String password;
+	@OneToMany(mappedBy = "user")
+	private List<PokemonEntity> pkmTeam;
 	
 	public UserEntity(CreateUserRequest createUserRequest) {
 		this.teamName = createUserRequest.getTeamName();
