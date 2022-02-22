@@ -25,17 +25,17 @@ import lombok.Setter;
 @Table(name="users")
 public class UserEntity {
 	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	
 	@Column(name="team_name",length = 30, unique=true)
 	private String teamName;
 	
 	@Column(name="trainer_name", length = 30, unique=true)
 	private String trainerName;
-	
+
 	@Column(name="rol")
 	private String rol;
 	
@@ -45,9 +45,10 @@ public class UserEntity {
 	@Column(name="user_password")
 	private String password;
 
-	//@OneToMany (mappedBy = "user")
-	//@JoinColumn(name="user_id")
-	//private List<PokemonEntity> pkmTeam;
+
+	@OneToMany(mappedBy = "user")
+	private List<PokemonEntity> pkmTeam;
+
 	
 	public UserEntity(CreateUserRequest createUserRequest) {
 		this.teamName = createUserRequest.getTeamName();

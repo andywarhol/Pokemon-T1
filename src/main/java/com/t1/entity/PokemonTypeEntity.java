@@ -12,11 +12,12 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
+@Entity
 @Table(name="pokemon_types")
 @Entity
 public class PokemonTypeEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_type")
 	private Long id;
 

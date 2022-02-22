@@ -16,23 +16,24 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
+@Entity
 @Table(name="pokemon_teams")
 @Entity
 public class PokemonEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pkm_id")
 	private Long id;
 	
 	@Column(name="pkm_name")
 	private String pkmName;
-	
-	//@OneToMany(mappedBy = "pkmType")
-	//@JoinColumn(name = "pkm_type_id")
-	//private List<PokemonTypeEntity> types;
 
-	//@ManyToOne
-	//@JoinColumn(name = "pkm_team")
-	//private UserEntity user;
+	@OneToMany
+	private List<PokemonTypeEntity> types;
+	
+	@ManyToOne
+	@JoinColumn(name = "pkm_team")
+	private UserEntity user;
+
 
 }
