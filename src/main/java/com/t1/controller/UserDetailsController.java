@@ -1,5 +1,7 @@
 package com.t1.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class UserDetailsController {
 	private UserDetailsService userDetailsService;
 	
 	@PostMapping("/")
-	public ResponseEntity<ResponseDTO<JWTResponseDTO>> signIn(@RequestBody LoginRequestDTO userLogin) throws Exception{
+	public ResponseEntity<ResponseDTO<JWTResponseDTO>> signIn(@Valid @RequestBody LoginRequestDTO userLogin) throws Exception{
 		try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
