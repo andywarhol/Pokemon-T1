@@ -1,5 +1,9 @@
 package com.t1.responsedto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.t1.entity.PokemonEntity;
 import com.t1.entity.UserEntity;
 
 import lombok.Getter;
@@ -22,6 +26,8 @@ public class UserResponse {
 	
 	private String password;
 	
+	private List<PokemonResponse> pokemons;
+	
 	public UserResponse(UserEntity userEntity) {
 		this.id = userEntity.getId();
 		this.teamName = userEntity.getTeamName();
@@ -29,6 +35,13 @@ public class UserResponse {
 		this.rol = userEntity.getRol();
 		this.username = userEntity.getUsername();
 		this.password = userEntity.getPassword();
+		
+		if(userEntity.getPkmTeam()!=null) {
+			pokemons = new ArrayList<PokemonResponse>();
+			for(PokemonEntity pkm: userEntity.getPkmTeam()) {
+				pokemons.add(new PokemonResponse(pkm));
+			}
+		}
 	}
 	
 }
