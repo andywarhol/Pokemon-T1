@@ -16,12 +16,14 @@ public class PokemonResponse {
 	
 	private String pkmName;
 	
-	//private List<PokemonTypeEntity> types;
+	//
+	private List<PokemonTypeEntity> types;
 	
 	public PokemonResponse(PokemonEntity pkmEntity) {
 		this.id = pkmEntity.getId();
 		this.pkmName = pkmEntity.getPkmName();
-		//this.types = pkmEntity.getTypes();
+		//
+		this.types = pkmEntity.getTypes();
 		
 	}
 }

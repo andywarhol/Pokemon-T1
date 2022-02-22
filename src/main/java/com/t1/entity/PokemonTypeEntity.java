@@ -26,7 +26,5 @@ public class PokemonTypeEntity {
 	@ManyToOne
 	@JoinColumn(name = "pkm_type_id")
 	private PokemonEntity pkm;
-	
-	
 
 }

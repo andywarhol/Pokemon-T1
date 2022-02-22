@@ -30,6 +30,7 @@ public class PokemonEntity {
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;
 
-	/*@OneToMany
-	private List<PokemonTypeEntity> types;*/
+	//
+	@OneToMany(mappedBy = "pkm")
+	private List<PokemonTypeEntity> types;
 }
