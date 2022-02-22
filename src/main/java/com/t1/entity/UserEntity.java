@@ -32,7 +32,7 @@ public class UserEntity {
 	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name="user_name", length=30, unique=true)
@@ -41,13 +41,13 @@ public class UserEntity {
 	@Column(name="user_pass", length=30)
 	private String password;
 
-	@Column(name="user_teamname")
+	@Column(name="user_teamname", unique=true)
 	private String teamName;
 
 	@Column(name="user_trainername", length=30, unique=true)
 	private String trainerName;
 
-	@Column(name="user_rol")
+	@Column(name="user_role")
 	private String rol;
 	
 	@OneToMany(mappedBy = "user")
