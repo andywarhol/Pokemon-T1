@@ -15,6 +15,7 @@ import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,6 +68,11 @@ public class UserController {
 	public UserResponse addPokemonToUser(@RequestBody UpdateUserRequest updateUserReq) {
 		UserEntity addPokemonToUser = userService.addMorePokemons(updateUserReq);
 		return new UserResponse(addPokemonToUser);
+	}
+	
+	@DeleteMapping("/deletePokemon/{id}")
+	public String deletePokemon(@PathVariable Long id) {
+	return userService.deletePokemon(id);
 	}
 	
 	@GetMapping("/getAll")
