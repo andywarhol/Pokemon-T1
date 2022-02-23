@@ -36,6 +36,7 @@ import com.t1.requestedto.UpdateUserRequest;
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
+
 @RestController
 @RequestMapping("/api/user/")
 public class UserController {
@@ -147,4 +148,8 @@ public class UserController {
 	
 	
 
+	@GetMapping("/a")
+	public String a() {
+		return "aaaaaaaaaaaaaaa";
+	}
 }
