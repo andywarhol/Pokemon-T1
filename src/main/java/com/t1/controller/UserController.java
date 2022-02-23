@@ -5,13 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.t1.entity.PokemonEntity;
 import com.t1.entity.UserEntity;
 import com.t1.requestedto.CreateUserRequest;
+import com.t1.responsedto.PokemonResponse;
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
@@ -36,6 +39,20 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/getAllByUser/{username}")
+	public List<UserResponse> getByUser(@PathVariable String username){
+		List<UserEntity> userList = userService.getByUser(username);
+		List<UserResponse> userResponseList = new ArrayList<UserResponse>();
+		
+		userList.stream().forEach(user -> {
+			userResponseList.add(new UserResponse(user));
+		});
+		
+		return userResponseList;
+	}
+	
+	
+	
 	@PostMapping("/create")
 	public UserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
 		UserEntity user = userService.createUser(createUserRequest);
@@ -43,4 +60,8 @@ public class UserController {
 		return new UserResponse(user);
 	}
 
+	@GetMapping("/a")
+	public String a() {
+		return "aaaaaaaaaaaaaaa";
+	}
 }
