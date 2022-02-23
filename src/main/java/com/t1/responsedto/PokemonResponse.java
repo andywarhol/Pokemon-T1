@@ -4,6 +4,7 @@ package com.t1.responsedto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.t1.entity.PokemonEntity;
 import com.t1.entity.PokemonTypeEntity;
 
@@ -14,7 +15,9 @@ import lombok.Setter;
 @Setter
 public class PokemonResponse {
 	
+
 	private Long id;
+	
 	private String pkmName;
 	private List<PokemonTypeEntity> types;
 	
