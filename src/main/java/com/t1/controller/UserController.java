@@ -99,8 +99,8 @@ public class UserController {
 	
 	
 
-	@GetMapping("/a")
+	@GetMapping("/")
 	public String a() {
-		return "aaaaaaaaaaaaaaa";
+		return "Api funcionando";
 	}
 }

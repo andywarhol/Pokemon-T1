@@ -30,7 +30,6 @@ public class UserService {
 	@Autowired
 	PokemonTypeRepository pokemonTypeRepository;
   
-  @Autowired
 	UserResponse userResponse;
 	
 
@@ -176,4 +175,4 @@ public class UserService {
 	}
 	
 }
-}
+
