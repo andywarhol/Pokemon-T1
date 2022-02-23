@@ -24,7 +24,7 @@ public class UserResponse {
 	private String rol;
 
 	private String username;
-	@JsonIgnore
+	
 	private String password;
 	
 	private List<PokemonResponse> pokemons;

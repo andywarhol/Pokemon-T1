@@ -39,7 +39,7 @@ public class PokemonEntity {
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;
 	
-	@OneToMany(mappedBy = "pkm")
+	@OneToMany(mappedBy = "pkm", orphanRemoval = true)
 	private List<PokemonTypeEntity> types;
 
 
