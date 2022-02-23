@@ -44,6 +44,16 @@ jar{
 	archiveClassifier.set('')
 }
 
+
+bootJar {
+    archiveClassifier.set('boot')
+}
+
+jar {
+    archiveClassifier.set('')
+
+}   
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
