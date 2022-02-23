@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.Getter;
@@ -30,9 +33,10 @@ public class PokemonTypeEntity {
 	@Column(name="name_type")
 	private String pkmType;
 	
-	//@ManyToOne
-	//@JoinColumn(name = "pkm_type_id")
-	//private PokemonEntity pkm;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="pkm_type_id")
+	private PokemonEntity pkm;
 	
 	
 
