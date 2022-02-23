@@ -56,66 +56,17 @@ public class UserController {
 		return new UserResponse(user);
 	}
 	
-	/*
-	@GetMapping("/id/{id}")
-	public UserResponse findUserById(@PathVariable Long id) {
-		UserEntity user = userRepo.getById(id);
-		return new UserResponse(user);
-	}
-	*/
-	/*
-	@PatchMapping("/update/{id}")
-	public @ResponseBody void saveUser(@PathVariable Long id, @RequestBody Map<Object, Object> fields) {
-		UserEntity user = userRepo.getById(id);
-		//Map key is field name, v is value
-		fields.forEach((k,v) -> {
-			
-			//use reflection to get field k on user and set it to value k
-			Field field = ReflectionUtils.findRequiredField(UserEntity.class,(String)k);
-			field.setAccessible(true);
-			ReflectionUtils.setField(field, user, v);
-			
-		});
-		userRepo.save(user);
-	}
-	*/
-	
-	/*
-	private UserEntity applyPatchToUser(JsonPatch patch, UserEntity user) 
-			throws JsonProcessingException, IllegalArgumentException, JsonPatchException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode patched = patch.apply(objectMapper.convertValue(user, JsonNode.class));
-		return objectMapper.treeToValue(patched, UserEntity.class);
-	}
-	
-	
-	@PatchMapping(path = "/update/{id}", consumes = "application/json-patch+json")
-	public ResponseEntity<UserEntity> updateUser(@PathVariable Long id, @RequestBody JsonPatch patch) {
-		
-		try {
-		 UserEntity user = userRepo.getById(id); 
-		 UserEntity userPatched = applyPatchToUser(patch,(UserEntity) user);
-		 return ResponseEntity.ok(userPatched);
-		}catch(JsonPatchException | JsonProcessingException e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-	
-	*/
-	/*
-	@RequestMapping(value="/update/{id}", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<UserEntity> update(@PathVariable Long id,  HttpServletRequest request) throws IOException{
-		UserEntity user = userRepo.findOne(id);
-		UserEntity updatedUser = objectMapper.readerForUpdating(user).readValue(request.getReader());
-		userRepo.saveAndFlush(updatedUser);
-		return new ResponseEntity<>(updatedUser, HttpStatus.ACCEPTED);
-	}
-	*/
 	
 	@PutMapping("/update")
 	public UserResponse updateDetails(@RequestBody UpdateUserRequest updateUserReq) {
 		UserEntity updateUser = userService.updateUserDetails(updateUserReq);
 		return new UserResponse(updateUser);
+	}
+	
+	@PostMapping("/addPokemon")
+	public UserResponse addPokemonToUser(@RequestBody UpdateUserRequest updateUserReq) {
+		UserEntity addPokemonToUser = userService.addMorePokemons(updateUserReq);
+		return new UserResponse(addPokemonToUser);
 	}
 	
 	@GetMapping("/getAll")
