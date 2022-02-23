@@ -37,12 +37,101 @@ public class UserService {
 	public List<UserEntity> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
-	public List<UserEntity> getByUser(String username){
+
+	public List<UserEntity> getByUser(String username) {
 		return userRepository.findByUsername(username);
 	}
 	
+	public UserEntity updateUserDetails(UpdateUserRequest updateUserRequest) {
+		UserEntity existingUserDetails = userRepository.getById(updateUserRequest.getId());
+		/*
+		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
+		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
+		*/
+		
+		if(updateUserRequest.getPassword()!=null && !updateUserRequest.getPassword().isEmpty() ) {
+			existingUserDetails.setPassword(updateUserRequest.getPassword());
+		}
+		
+		if(updateUserRequest.getTeamName()!=null && !updateUserRequest.getTeamName().isEmpty() ) {
+			existingUserDetails.setTeamName(updateUserRequest.getTeamName());
+		}
+		
+		if(updateUserRequest.getTrainerName()!=null && !updateUserRequest.getTrainerName().isEmpty() ) {
+			existingUserDetails.setTrainerName(updateUserRequest.getTrainerName());
+		}
+		
+		if(updateUserRequest.getRol()!=null && !updateUserRequest.getRol().isEmpty() ) {
+			existingUserDetails.setRol(updateUserRequest.getRol());
+		}
+		return userRepository.save(existingUserDetails);
+		/*
+		if(updateUserRequest.getPokemons()!=null) {
+			for (CreatePokemonRequest createPKM : updateUserRequest.getPokemons()) {
+				PokemonEntity pokemon = new PokemonEntity();
+				if (createPKM.getTypes() != null) {
+					for (CreatePokemonTypeRequest createType : createPKM.getTypes()) {
+						PokemonTypeEntity tipoPKM = new PokemonTypeEntity();
+						tipoPKM.setPkmType(createType.getPkmType());
+						tipoPKM.setPkm(pokemon);
+						pokemonTypes.add(tipoPKM);
 
+					}
+
+				}
+				pokemon.setTypes(pokemonTypes);
+				pokemon.setPkmName(createPKM.getPkmName());
+				existingUserDetails = userRepository.save(existingUserDetails);
+				pokemon.setUser(existingUserDetails);
+				userPokemons.add(pokemon);
+			}
+			pokemonRepository.saveAll(userPokemons);
+			pokemonTypeRepository.saveAll(pokemonTypes);
+		}
+		existingUserDetails.setPkmTeam(userPokemons);
+		return userRepository.save(existingUserDetails);
+			*/
+		
+	}
+	
+	/*
+	public UserEntity updateUserPokemons(UpdateUserRequest updateUserRequest) {
+		UserEntity user = userRepository.findById(updateUserRequest.getId()).get();
+		
+		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
+		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
+
+		if (updateUserRequest.getPokemons() != null) {
+
+			for (CreatePokemonRequest createPKM : updateUserRequest.getPokemons()) {
+				PokemonEntity pokemon = new PokemonEntity();
+				if (createPKM.getTypes() != null) {
+					for (CreatePokemonTypeRequest createType : createPKM.getTypes()) {
+						PokemonTypeEntity tipoPKM = new PokemonTypeEntity();
+						tipoPKM.setPkmType(createType.getPkmType());
+						tipoPKM.setPkm(pokemon);
+						pokemonTypes.add(tipoPKM);
+
+					}
+
+				}
+
+				pokemon.setTypes(pokemonTypes);
+				pokemon.setPkmName(createPKM.getPkmName());
+				user = userRepository.save(user);
+				pokemon.setUser(user);
+				userPokemons.add(pokemon);
+			}
+
+			pokemonRepository.saveAll(userPokemons);
+			pokemonTypeRepository.saveAll(pokemonTypes);
+		}
+		user.setPkmTeam(userPokemons);
+
+		return user;
+		
+	}
+*/
 	public UserEntity createUser(CreateUserRequest createUserRequest) {
 
 		UserEntity user = new UserEntity(createUserRequest);
@@ -60,12 +149,11 @@ public class UserService {
 						tipoPKM.setPkmType(createType.getPkmType());
 						tipoPKM.setPkm(pokemon);
 						pokemonTypes.add(tipoPKM);
-						
+
 					}
-					
 
 				}
-				
+
 				pokemon.setTypes(pokemonTypes);
 				pokemon.setPkmName(createPKM.getPkmName());
 				user = userRepository.save(user);
@@ -80,6 +168,8 @@ public class UserService {
 
 		return user;
 	}
+	
+	
 
 
 	
