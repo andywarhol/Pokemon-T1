@@ -1,4 +1,4 @@
-package com.t1.entity;
+package com.t1.REST;
 
 public class test {
 

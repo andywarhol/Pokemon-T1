@@ -18,6 +18,7 @@ import com.t1.responsedto.PokemonResponse;
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
+
 @RestController
 @RequestMapping("/api/user/")
 public class UserController {
@@ -59,4 +60,8 @@ public class UserController {
 		return new UserResponse(user);
 	}
 
+	@GetMapping("/a")
+	public String a() {
+		return "aaaaaaaaaaaaaaa";
+	}
 }
