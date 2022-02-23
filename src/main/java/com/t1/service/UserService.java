@@ -20,13 +20,9 @@ import com.t1.responsedto.UserResponse;
 
 @Service
 public class UserService {
-
+	
 	@Autowired
 	UserRepository userRepository;
-<<<<<<< HEAD
-	UserResponse userResponse;
-	
-=======
 
 	@Autowired
 	PokemonRepository pokemonRepository;
@@ -34,7 +30,6 @@ public class UserService {
 	@Autowired
 	PokemonTypeRepository pokemonTypeRepository;
 
->>>>>>> a35811213e473ff9796393a9a034ab5a6123cca4
 	public List<UserEntity> getAllUsers() {
 		return userRepository.findAll();
 	}
@@ -43,7 +38,7 @@ public class UserService {
 		return userRepository.findByUsername(username);
 	}
 	
-<<<<<<< HEAD
+
 	public UserEntity updateUser(UpdateUserRequest updateUserRequest) {
 		UserEntity user = userRepository.findById(updateUserRequest.getId()).get();
 		
@@ -81,10 +76,6 @@ public class UserService {
 		return "Se ha borrado el usuario";
 	}
 	
-}
-=======
->>>>>>> a35811213e473ff9796393a9a034ab5a6123cca4
-
 	public UserEntity createUser(CreateUserRequest createUserRequest) {
 
 		UserEntity user = new UserEntity(createUserRequest);
@@ -122,5 +113,31 @@ public class UserService {
 
 		return user;
 	}
+	
+	public UserEntity findUserById(long id) {
+		return userRepository.findById(id).get();
+	}
 
+	
+	public String deletePokemon(long id) {
+		PokemonEntity  pk = pokemonRepository.findById(id).get();
+		
+		List<PokemonTypeEntity> res = pokemonTypeRepository.findByPkm(pk);
+		for(PokemonTypeEntity t : res) {
+			pokemonTypeRepository.delete(t);
+		}
+		
+		pokemonRepository.deleteById(id);
+		return "pokemon deleted successfully";
+	}
+	
+	/*
+	public List<PokemonTypeEntity> deletePokemon2(long id) {
+		PokemonEntity  pk = pokemonRepository.findById(id).get();
+		
+		//List<PokemonTypeEntity> res = pokemonTypeRepository.findByPkm(id);
+		return pokemonTypeRepository.findByPkm(pk);
+	
+	}
+	*/
 }

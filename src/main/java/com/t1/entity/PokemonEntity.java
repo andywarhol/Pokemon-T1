@@ -40,6 +40,4 @@ public class PokemonEntity {
 	
 	@OneToMany(mappedBy = "pkm")
 	private List<PokemonTypeEntity> types;
-
-
 }
