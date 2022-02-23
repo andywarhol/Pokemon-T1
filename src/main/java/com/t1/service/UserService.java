@@ -75,9 +75,6 @@ public class UserService {
 	public UserEntity updateUserDetails(UpdateUserRequest updateUserRequest) {
 		UserEntity existingUserDetails = userRepository.getById(updateUserRequest.getId());
 
-		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
-		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
-
 		if (updateUserRequest.getPassword() != null && !updateUserRequest.getPassword().isEmpty()) {
 			existingUserDetails.setPassword(updateUserRequest.getPassword());
 		}
@@ -97,6 +94,12 @@ public class UserService {
 		return userRepository.save(existingUserDetails);
 
 	}
+	
+	public String deletePokemon(Long id) {
+		
+		pokemonRepository.deleteById(id);
+		return "Pokemon with ID: " + id + " has been deleted";
+		}
 
 	public UserEntity createUser(CreateUserRequest createUserRequest) {
 
