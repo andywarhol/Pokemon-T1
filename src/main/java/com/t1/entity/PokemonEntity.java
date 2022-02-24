@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.t1.repository.UserRepository;
+import com.t1.requestedto.CreatePokemonRequest;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +27,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PokemonEntity {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="pkm_id")
 	private Long id;
 	
@@ -34,6 +40,11 @@ public class PokemonEntity {
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;
 	
-	@OneToMany(mappedBy = "pkm")
+	@OneToMany(mappedBy = "pkm", orphanRemoval=true)
 	private List<PokemonTypeEntity> types;
+	
+	public PokemonEntity(CreatePokemonRequest createPokemonRequest) {
+		this.pkmName = createPokemonRequest.getPkmName();
+	}
+	
 }

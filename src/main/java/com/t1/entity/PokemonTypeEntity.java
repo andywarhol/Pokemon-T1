@@ -19,7 +19,7 @@ import lombok.Data;
 @Table(name="pokemon_types")
 public class PokemonTypeEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_type")
 	private Long id;
 
