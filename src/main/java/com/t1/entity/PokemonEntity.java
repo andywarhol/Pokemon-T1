@@ -21,9 +21,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-
 @NoArgsConstructor
+@Entity
 @Table(name="pokemon_teams")
 @AllArgsConstructor
 public class PokemonEntity {
