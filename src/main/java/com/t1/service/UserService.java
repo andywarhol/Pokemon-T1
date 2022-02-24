@@ -18,6 +18,7 @@ import com.t1.requestedto.CreatePokemonRequest;
 import com.t1.requestedto.CreatePokemonTypeRequest;
 import com.t1.requestedto.CreateUserRequest;
 import com.t1.requestedto.InsertPokemonRequest;
+import com.t1.requestedto.UpdatePokemonRequest;
 import com.t1.requestedto.UpdateUserRequest;
 
 @Service
@@ -123,7 +124,6 @@ public class UserService {
 	
 	public UserEntity updateUserDetails(UpdateUserRequest updateUserRequest) {
 		UserEntity existingUserDetails = userRepository.getById(updateUserRequest.getId());
-		PokemonEntity existingPokemon = pokemonRepository.getById(updateUserRequest.getId());
 
 		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
 		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
@@ -146,6 +146,15 @@ public class UserService {
 			
 		return userRepository.save(existingUserDetails);
 
+	}
+	
+	public PokemonEntity updatePokemonDetails(UpdatePokemonRequest updatePokemonRequest) {
+		PokemonEntity existingPokemonDetails = pokemonRepository.getById(updatePokemonRequest.getId());
+		
+		if(updatePokemonRequest.getPkmName()!=null && !updatePokemonRequest.getPkmName().isBlank()) {
+			existingPokemonDetails.setPkmName(updatePokemonRequest.getPkmName());
+		}
+		return pokemonRepository.save(existingPokemonDetails);
 	}
 
 }

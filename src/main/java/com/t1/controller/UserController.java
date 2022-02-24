@@ -19,7 +19,9 @@ import com.t1.entity.UserEntity;
 import com.t1.requestedto.CreatePokemonRequest;
 import com.t1.requestedto.CreateUserRequest;
 import com.t1.requestedto.InsertPokemonRequest;
+import com.t1.requestedto.UpdatePokemonRequest;
 import com.t1.requestedto.UpdateUserRequest;
+import com.t1.responsedto.PokemonResponse;
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
@@ -81,6 +83,12 @@ public class UserController {
 	public UserResponse updateDetails(@RequestBody UpdateUserRequest updateUserReq) {
 		UserEntity updateUser = userService.updateUserDetails(updateUserReq);
 		return new UserResponse(updateUser);
+	}
+	
+	@PutMapping("/updatePkm")
+	public PokemonResponse updatePokemonDetails(@RequestBody UpdatePokemonRequest updatePkmReq) {
+		PokemonEntity updatePokemons = userService.updatePokemonDetails(updatePkmReq);
+		return new PokemonResponse(updatePokemons);
 	}
 	
 
