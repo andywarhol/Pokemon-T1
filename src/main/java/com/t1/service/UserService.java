@@ -20,7 +20,7 @@ import com.t1.responsedto.UserResponse;
 
 @Service
 public class UserService {
-
+	
 	@Autowired
 	UserRepository userRepository;
 
@@ -189,6 +189,5 @@ public class UserService {
 		userRepository.delete(user);
 		return "Se ha borrado el usuario";
 	}
-	
-}
 
+}

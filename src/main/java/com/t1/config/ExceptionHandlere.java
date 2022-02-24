@@ -9,11 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.t1.exception.NotFoudExeception;
+import com.t1.responsedto.ResponseDTO;
+
 @ControllerAdvice
-public class ExceptionHandler  extends ResponseEntityExceptionHandler{
+public class ExceptionHandlere  extends ResponseEntityExceptionHandler{
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -27,4 +31,11 @@ public class ExceptionHandler  extends ResponseEntityExceptionHandler{
 		});
 		return new ResponseEntity<>(errores, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(NotFoudExeception.class)
+	public ResponseEntity<ResponseDTO<String>> notFoundException(NotFoudExeception notFound){
+		ResponseDTO<String> response = new ResponseDTO<String>("the element wasnt found", notFound.getMessage());
+		return new ResponseEntity<ResponseDTO<String>>(response, HttpStatus.NOT_FOUND);
+	}
+
 }
