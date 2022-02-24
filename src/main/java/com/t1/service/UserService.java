@@ -34,6 +34,7 @@ public class UserService {
 	
 
 	public List<UserEntity> getAllUsers() {
+	
 		return userRepository.findAll();
 	}
 
@@ -109,11 +110,11 @@ public class UserService {
 		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
 		
 		
-		if(user.getTeamName() == null || user.getTeamName().isBlank() || 
-				user.getTrainerName() == null || user.getTrainerName().isBlank() ||
-				user.getRol() == null || user.getRol().isBlank() || 
-				user.getUsername() == null || user.getUsername().isBlank() || 
-				user.getPassword() == null || user.getPassword().isBlank()) {
+		if(user.getTeamName() == null || user.getTeamName().isEmpty() || 
+				user.getTrainerName() == null || user.getTrainerName().isEmpty() ||
+				user.getRol() == null || user.getRol().isEmpty() || 
+				user.getUsername() == null || user.getUsername().isEmpty() || 
+				user.getPassword() == null || user.getPassword().isEmpty()) {
 			throw new NullPointerException();
 		}	
 		
