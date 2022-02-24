@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,13 +20,16 @@ import com.t1.requestedto.CreatePokemonRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="pokemon_teams")
 @AllArgsConstructor
-@NoArgsConstructor
 public class PokemonEntity {
 
 	@Id
@@ -33,9 +37,11 @@ public class PokemonEntity {
 	@Column(name="pkm_id")
 	private Long id;
 	
-	@Column(name="pkm_name", unique=true)
+
+	@Column(name="pkm_name", unique = true)
 	private String pkmName;
-	
+
+
 	@ManyToOne
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;
@@ -47,4 +53,5 @@ public class PokemonEntity {
 		this.pkmName = createPokemonRequest.getPkmName();
 	}
 	
+
 }

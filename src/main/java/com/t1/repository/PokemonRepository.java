@@ -7,6 +7,8 @@ import com.t1.entity.UserEntity;
 
 import java.util.List;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository

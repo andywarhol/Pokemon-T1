@@ -1,6 +1,5 @@
 package com.t1.entity;
 
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,11 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.t1.requestedto.CreateUserRequest;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,23 +34,25 @@ public class UserEntity {
 	@Column(name="id")
 	private Long id;
 
-	@Column(name="user_name", length=30, unique=true)
-	private String username;
-
-	@Column(name="user_pass", length=30)
-	private String password;
-
-	@Column(name="user_teamname", unique=true)
+	@Column(name="team_name",length = 30, unique=true)
 	private String teamName;
-
-	@Column(name="user_trainername", length=30, unique=true)
+	
+	@Column(name="trainer_name", length = 30, unique=true)
 	private String trainerName;
 
-	@Column(name="user_role")
+	@Column(name="rol")
 	private String rol;
 	
+	@Column(name="username", length = 30, unique=true)
+	private String username;
+	
+	@Column(name="user_password")
+	private String password;
+
 	@OneToMany(mappedBy = "user")
 	private List<PokemonEntity> pkmTeam;
+
+
 	
 	public UserEntity(CreateUserRequest createUserRequest) {
 		this.teamName = createUserRequest.getTeamName();
