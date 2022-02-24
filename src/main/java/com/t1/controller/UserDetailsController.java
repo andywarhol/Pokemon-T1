@@ -20,7 +20,7 @@ import com.t1.config.JWTUtility;
 import com.t1.requestedto.LoginRequestDTO;
 import com.t1.responsedto.JWTResponseDTO;
 import com.t1.responsedto.ResponseDTO;
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/authenticate/")
 public class UserDetailsController {
