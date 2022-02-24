@@ -34,6 +34,7 @@ public class UserService {
 	
 
 	public List<UserEntity> getAllUsers() {
+	
 		return userRepository.findAll();
 	}
 
@@ -107,6 +108,16 @@ public class UserService {
 
 		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
 		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
+		
+		
+		if(user.getTeamName() == null || user.getTeamName().isEmpty() || 
+				user.getTrainerName() == null || user.getTrainerName().isEmpty() ||
+				user.getRol() == null || user.getRol().isEmpty() || 
+				user.getUsername() == null || user.getUsername().isEmpty() || 
+				user.getPassword() == null || user.getPassword().isEmpty()) {
+			throw new NullPointerException();
+		}	
+		
 
 		if (createUserRequest.getPokemons() != null) {
 
@@ -133,8 +144,10 @@ public class UserService {
 			pokemonRepository.saveAll(userPokemons);
 			pokemonTypeRepository.saveAll(pokemonTypes);
 		}
+		
+	
+		
 		user.setPkmTeam(userPokemons);
-
 		return user;
 	}
 
