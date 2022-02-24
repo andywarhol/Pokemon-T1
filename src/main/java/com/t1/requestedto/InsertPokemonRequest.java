@@ -11,7 +11,5 @@ public class InsertPokemonRequest {
 
 	private Long id; 
 	
-	//private String username;
-	
 	private List<CreatePokemonRequest> pokemons;
 }

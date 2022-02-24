@@ -13,5 +13,7 @@ public class UpdatePokemonRequest {
 	
 	private String pkmName;
 	
-	private List<CreatePokemonTypeRequest> types;
+	private UpdatePokemonTypeRequest updatePkmTypes;
+	
+	//private List<UpdatePokemonTypeRequest> types;
 }

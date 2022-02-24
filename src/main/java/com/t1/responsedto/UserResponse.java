@@ -44,6 +44,9 @@ public class UserResponse {
 				pokemons.add(new PokemonResponse(pkm));
 			}
 		}
+		
+		
+		
 	}	
 	
 }

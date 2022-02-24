@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 public class UpdatePokemonTypeRequest {
 
-	private Long id; 
+	private Long idType; 
 	
 	private String pkmType;
 }
