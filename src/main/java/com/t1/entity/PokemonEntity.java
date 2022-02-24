@@ -32,7 +32,7 @@ public class PokemonEntity {
 	@Column(name="pkm_id")
 	private Long id;
 	
-	@Column(name="pkm_name")
+	@Column(name="pkm_name", unique = true)
 	private String pkmName;
 
 	@ManyToOne
