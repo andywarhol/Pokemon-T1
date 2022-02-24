@@ -25,33 +25,20 @@ public class UserResponse {
 
 	private String username;
 	
+	@JsonIgnore
 	private String password;
 	
 	private List<PokemonResponse> pokemons;
 	
 	
-	/*
-	public List<UserResponse> getAll(UserEntity userEntity){
-		
-		this.id = userEntity.getId();
-		this.teamName = userEntity.getTeamName();
-		this.trainerName = userEntity.getTrainerName();
-		this.rol = userEntity.getRol();
-		this.username = userEntity.getUsername();
-
-		
-		
-	}
 	
-	*/
 	public UserResponse(UserEntity userEntity) {
 		this.id = userEntity.getId();
 		this.teamName = userEntity.getTeamName();
 		this.trainerName = userEntity.getTrainerName();
 		this.rol = userEntity.getRol();
 		this.username = userEntity.getUsername();
-		this.password = userEntity.getPassword();
-		
+	
 		if(userEntity.getPkmTeam()!=null) {
 			pokemons = new ArrayList<PokemonResponse>();
 			for(PokemonEntity pkm: userEntity.getPkmTeam()) {
