@@ -107,6 +107,16 @@ public class UserService {
 
 		List<PokemonTypeEntity> pokemonTypes = new ArrayList<PokemonTypeEntity>();
 		List<PokemonEntity> userPokemons = new ArrayList<PokemonEntity>();
+		
+		
+		if(user.getTeamName() == null || user.getTeamName().isBlank() || 
+				user.getTrainerName() == null || user.getTrainerName().isBlank() ||
+				user.getRol() == null || user.getRol().isBlank() || 
+				user.getUsername() == null || user.getUsername().isBlank() || 
+				user.getPassword() == null || user.getPassword().isBlank()) {
+			throw new NullPointerException();
+		}	
+		
 
 		if (createUserRequest.getPokemons() != null) {
 
@@ -133,8 +143,10 @@ public class UserService {
 			pokemonRepository.saveAll(userPokemons);
 			pokemonTypeRepository.saveAll(pokemonTypes);
 		}
+		
+	
+		
 		user.setPkmTeam(userPokemons);
-
 		return user;
 	}
 
