@@ -24,14 +24,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="pokemon_teams")
-@AllArgsConstructor
 public class PokemonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pkm_id")
 	private Long id;
 	
-	@Column(name="pkm_name", unique = true)
+	@Column(name="pkm_name", length = 30, unique=true)
 	private String pkmName;
 
 	@ManyToOne
