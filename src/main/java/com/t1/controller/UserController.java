@@ -1,5 +1,6 @@
 package com.t1.controller;
 
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -103,8 +104,6 @@ public class UserController {
 		
 		return userResponseList;
 	}
-	
-	
 	
 	
 

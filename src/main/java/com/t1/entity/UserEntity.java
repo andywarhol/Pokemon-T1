@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -45,9 +46,9 @@ public class UserEntity {
 	@Column(name="user_password")
 	private String password;
 
-
 	@OneToMany(mappedBy = "user")
 	private List<PokemonEntity> pkmTeam;
+
 
 	
 	public UserEntity(CreateUserRequest createUserRequest) {
