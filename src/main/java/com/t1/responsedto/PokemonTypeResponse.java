@@ -1,5 +1,6 @@
 package com.t1.responsedto;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.t1.entity.PokemonTypeEntity;
 

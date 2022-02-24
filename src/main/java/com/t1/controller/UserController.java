@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,17 +28,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.t1.entity.UserEntity;
+
+import com.t1.requestedto.CreatePokemonRequest;
+import com.t1.requestedto.CreateUserRequest;
+import com.t1.requestedto.InsertPokemonRequest;
+import com.t1.requestedto.UpdatePokemonRequest;
+import com.t1.requestedto.UpdateUserRequest;
+import com.t1.responsedto.PokemonResponse;
+
 import com.t1.repository.UserRepository;
 import com.t1.requestedto.CreateUserRequest;
 import com.t1.requestedto.UpdateUserRequest;
+
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
@@ -105,6 +121,41 @@ public class UserController {
 	}
 	
 	
+
+	@PostMapping("/create")
+	public UserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
+		UserEntity user = userService.createUser(createUserRequest);
+		
+		return new UserResponse(user);
+	}
+	
+	@PostMapping("/insertPokemon/{id}")
+	public UserResponse insertPokemon(@RequestBody InsertPokemonRequest insertPokemonRequest) {
+
+		UserEntity user = userService.insertPokemon(insertPokemonRequest);
+		
+		return new UserResponse(user);
+		
+	}
+	
+	@DeleteMapping("/delete")
+	public String deletePokemon(@RequestParam long id) {
+		return userService.deletePokemon(id);
+	}
+	
+	@PutMapping("/update")
+	public UserResponse updateDetails(@RequestBody UpdateUserRequest updateUserReq) {
+		UserEntity updateUser = userService.updateUserDetails(updateUserReq);
+		return new UserResponse(updateUser);
+	}
+	
+	@PutMapping("/updatePkm")
+	public PokemonResponse updatePokemonDetails(@RequestBody UpdatePokemonRequest updatePkmReq) {
+		PokemonEntity updatePokemons = userService.updatePokemonDetails(updatePkmReq);
+		return new PokemonResponse(updatePokemons);
+	}
+	
+
 
 	@GetMapping("/")
 	public String a() {

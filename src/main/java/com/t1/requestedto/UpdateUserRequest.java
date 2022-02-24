@@ -1,11 +1,8 @@
 package com.t1.requestedto;
 
 
-import java.util.List;
 
 import javax.validation.constraints.NotNull;
-
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,19 +10,17 @@ import lombok.Setter;
 @Setter
 public class UpdateUserRequest {
 
-	@NotNull(message = "id is required!")
-	private Long id;
 
-	private String teamName;
-
-	private String trainerName;
-
-	private String rol;
+	private Long id; 
 	
-	private String username;
+	private String teamName;
+	
+	private String trainerName;
+	
+	private String rol; 
 	
 	private String password;
-  	
+	
 	private List<CreatePokemonRequest> pokemons;
 
 
