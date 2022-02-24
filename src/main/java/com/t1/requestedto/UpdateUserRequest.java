@@ -1,8 +1,10 @@
 package com.t1.requestedto;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotBlank;
+
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateUserRequest {
-	
+
 	@NotNull(message = "id is required!")
 	private Long id;
 
@@ -23,4 +25,8 @@ public class UpdateUserRequest {
 	private String username;
 	
 	private String password;
+  	
+	private List<CreatePokemonRequest> pokemons;
+
+
 }

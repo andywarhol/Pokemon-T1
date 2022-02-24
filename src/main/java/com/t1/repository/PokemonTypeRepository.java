@@ -12,5 +12,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface PokemonTypeRepository extends JpaRepository<PokemonTypeEntity,Long> {
 	
-	List<PokemonTypeEntity> findByPkm(PokemonEntity  pk);
 }

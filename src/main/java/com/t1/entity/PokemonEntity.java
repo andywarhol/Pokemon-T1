@@ -22,22 +22,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+
+@NoArgsConstructor
 @Table(name="pokemon_teams")
 @AllArgsConstructor
-@NoArgsConstructor
 public class PokemonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pkm_id")
 	private Long id;
 	
-	@Column(name="pkm_name")
+	@Column(name="pkm_name", unique = true)
 	private String pkmName;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;
 	
-	@OneToMany(mappedBy = "pkm")
+	@OneToMany(mappedBy = "pkm", orphanRemoval = true)
 	private List<PokemonTypeEntity> types;
 }

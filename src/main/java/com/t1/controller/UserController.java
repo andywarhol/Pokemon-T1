@@ -1,36 +1,82 @@
 package com.t1.controller;
 
+
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.t1.entity.PokemonEntity;
-import com.t1.entity.PokemonTypeEntity;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.t1.entity.UserEntity;
+import com.t1.repository.UserRepository;
 import com.t1.requestedto.CreateUserRequest;
-import com.t1.requestedto.DeletePokemonRequest;
-import com.t1.responsedto.PokemonResponse;
-import com.t1.responsedto.ResponseDTO;
+import com.t1.requestedto.UpdateUserRequest;
 import com.t1.responsedto.UserResponse;
 import com.t1.service.UserService;
 
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/user/")
 public class UserController {
 	
 	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	ObjectMapper objectMapper;
+	
+	@Autowired
 	UserService userService;
+	
+	@PostMapping("/create")
+	public UserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
+		UserEntity user = userService.createUser(createUserRequest);
+		
+		return new UserResponse(user);
+	}
+	
+	
+	@PutMapping("/update")
+	public UserResponse updateDetails(@RequestBody UpdateUserRequest updateUserReq) {
+		UserEntity updateUser = userService.updateUserDetails(updateUserReq);
+		return new UserResponse(updateUser);
+	}
+	
+	@PostMapping("/addPokemon")
+	public UserResponse addPokemonToUser(@RequestBody UpdateUserRequest updateUserReq) {
+		UserEntity addPokemonToUser = userService.addMorePokemons(updateUserReq);
+		return new UserResponse(addPokemonToUser);
+	}
+	
+	@DeleteMapping("/deletePokemon/{id}")
+	public String deletePokemon(@PathVariable Long id) {
+	return userService.deletePokemon(id);
+	}
 	
 	@GetMapping("/getAll")
 	public List<UserResponse> getAllUsers(){
@@ -58,46 +104,9 @@ public class UserController {
 	}
 	
 	
-	
-	@PostMapping("/create")
-	public UserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
-		UserEntity user = userService.createUser(createUserRequest);
-		
-		return new UserResponse(user);
-	}
-	
-	
-	/*
-	@DeleteMapping("/deletepokemon")
-	public ResponseEntity<ResponseDTO<String>> deletePokemonFromUser(@RequestBody DeletePokemonRequest pokemon){
-		UserEntity user = userService.findUserById(pokemon.getIdUser());
-		
-			response = userService.deletePokemon(pokemon.getIdPokemon());
-		
-		ResponseDTO<String> res = new ResponseDTO<String>("The request was right", response);
-		return new ResponseEntity<>(res, HttpStatus.OK);
-	}
-	*/
-	@DeleteMapping("/delete")
-	public ResponseDTO<String> deletePokemonFromUser(@RequestBody DeletePokemonRequest pokemon){
-		UserEntity user = userService.findUserById(pokemon.getIdUser());
-		ResponseDTO<String> pkm = null;
-		String s ="";
-		
-		if(user.getPkmTeam().size()<=1) {
-			System.out.println("ERRrororor");
-		}else {
-			 s= userService.deletePokemon(pokemon.getIdPokemon());
-			 pkm=new ResponseDTO<>("deleetd", s);
-		}
-		return pkm;
-	}
-	
-	/*
-	@DeleteMapping("/delet")
-	public List<PokemonTypeEntity> deletePokemonFromUser2(@RequestBody DeletePokemonRequest pokemon){
-			return userService.deletePokemon2(pokemon.getIdPokemon());
-				
-	}*/
 
+	@GetMapping("/")
+	public String a() {
+		return "Api funcionando";
+	}
 }

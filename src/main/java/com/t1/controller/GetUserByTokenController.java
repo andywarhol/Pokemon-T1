@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.t1.config.JWTUtility;
 import com.t1.entity.UserEntity;
 import com.t1.mapper.UserMapper;
@@ -15,6 +15,7 @@ import com.t1.repository.UserDetailsRepository;
 import com.t1.responsedto.ResponseDTO;
 import com.t1.responsedto.UserResponseDTO;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/verify-token")
 public class GetUserByTokenController {
