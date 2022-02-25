@@ -8,17 +8,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedEntityGraphs;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="pokemon_teams")
 @AllArgsConstructor
-@NoArgsConstructor
 public class PokemonEntity {
 
 	/*@Id
@@ -35,7 +41,5 @@ public class PokemonEntity {
 	/*@ManyToOne
 	@JoinColumn(name = "pkm_team")
 	private UserEntity user;*/
-	
-
 	
 }

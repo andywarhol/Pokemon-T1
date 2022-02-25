@@ -13,13 +13,18 @@ import com.t1.repository.PokemonRepository;
 import com.t1.repository.UserRepository;
 import com.t1.requestedto.CreatePokemonRequest;
 import com.t1.requestedto.CreateUserRequest;
+
+import com.t1.requestedto.UpdateUserRequest;
+import com.t1.responsedto.UserResponse;
+
 import com.t1.requestedto.DeleteRequest;
 import com.t1.requestedto.InsertPokemonRequest;
 import com.t1.requestedto.UpdateUserRequest;
 
+
 @Service
 public class UserService {
-
+	
 	@Autowired
 	UserRepository userRepository;
 	
@@ -94,7 +99,7 @@ public class UserService {
 
 		return user;
 	}
-	
+
 	
 	
 	public UserEntity updateUser(UpdateUserRequest updateUserRequest) {
@@ -131,5 +136,5 @@ public class UserService {
 	}
 	
 	
-	
+
 }
