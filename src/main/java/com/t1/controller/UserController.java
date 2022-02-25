@@ -43,8 +43,7 @@ public class UserController {
 		return new UserResponse(user);
 	}
 	
-	
-	/*@GetMapping("/getAll")
+	@GetMapping("/getAll")
 	public List<UserResponse> getAllUsers(){
 		List<UserEntity> userList = userService.getAllUsers();
 		List<UserResponse> userResponseList = new ArrayList<UserResponse>();
@@ -56,6 +55,15 @@ public class UserController {
 		return userResponseList;
 		
 	}
+	/*
+	@PutMapping("/update")
+	public UserResponse updateDetails(@RequestBody UpdateUserRequest updateUserReq) {
+		UserEntity updateUser = userService.updateUserDetails(updateUserReq);
+		return new UserResponse(updateUser);
+	}
+	
+	
+	
 	
 	@GetMapping("/getAllByUser/{username}")
 	public List<UserResponse> getByUser(@PathVariable String username){
