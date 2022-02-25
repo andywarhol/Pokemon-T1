@@ -34,7 +34,16 @@ public class UserService {
 	public UserEntity createUser(CreateUserRequest createUserRequest) {
 
 		UserEntity user = new UserEntity(createUserRequest);
-
+		
+		
+		if(user.getTeamName() == null || user.getTeamName().isEmpty() || 
+				user.getTrainerName() == null || user.getTrainerName().isEmpty() ||
+				user.getRol() == null || user.getRol().isEmpty() || 
+				user.getUsername() == null || user.getUsername().isEmpty() || 
+				user.getPassword() == null || user.getPassword().isEmpty()) {
+			throw new NullPointerException();
+		}	
+		
 		user.setPkmTeam(new ArrayList<PokemonEntity>());
 
 		if (createUserRequest.getPokemons() != null) {
