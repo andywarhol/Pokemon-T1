@@ -72,11 +72,11 @@ public class UserController {
 		return userService.deletePokemon(deleteRequest);
 	}
 	
-/*	@PostMapping("/addPokemon/{id}")
-	public PokemonResponse addPkm(@PathVariable Long id, @RequestBody InsertPokemonRequest insertPokemonRequest) {
-		PokemonEntity pkm = userService.insertPokemon(id, insertPokemonRequest);
+	@PostMapping("/addPokemon/{username}")
+	public UserResponse addPkm(@PathVariable String username, @RequestBody InsertPokemonRequest insertPokemonRequest) {
+		UserEntity pkm = userService.insertPokemon(username, insertPokemonRequest);
 		
-		return new PokemonResponse(pkm);
+		return new UserResponse(pkm);
 	}
 	
 	
