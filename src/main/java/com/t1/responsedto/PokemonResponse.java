@@ -13,7 +13,6 @@ public class PokemonResponse {
 	
 	public PokemonResponse(PokemonEntity pkmEntity) {
 		this.type = pkmEntity.getType();
-		
 	}
 
 }

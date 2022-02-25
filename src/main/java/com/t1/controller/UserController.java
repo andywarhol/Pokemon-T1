@@ -21,9 +21,8 @@ import com.t1.entity.PokemonEntity;
 import com.t1.entity.UserEntity;
 import com.t1.requestedto.CreatePokemonRequest;
 import com.t1.requestedto.CreateUserRequest;
+import com.t1.requestedto.DeleteRequest;
 import com.t1.requestedto.InsertPokemonRequest;
-import com.t1.requestedto.UpdatePokemonRequest;
-import com.t1.requestedto.UpdatePokemonTypeRequest;
 import com.t1.requestedto.UpdateUserRequest;
 import com.t1.responsedto.PokemonResponse;
 import com.t1.responsedto.UserResponse;
@@ -41,6 +40,43 @@ public class UserController {
 		UserEntity user = userService.createUser(createUserRequest);
 		
 		return new UserResponse(user);
+	}
+	
+	@GetMapping("/getAll")
+	public List<UserResponse> getAllUsers(){
+		List<UserEntity> userList = userService.getAllUsers();
+		List<UserResponse> userResponseList = new ArrayList<UserResponse>();
+		
+		userList.stream().forEach(user -> {
+			userResponseList.add(new UserResponse(user));
+		});
+		
+		return userResponseList;
+		
+	}
+
+	@GetMapping("/getAllByUser/{username}")
+	public List<UserResponse> getByUser(@PathVariable String username){
+		List<UserEntity> userList = userService.getByUser(username);
+		List<UserResponse> userResponseList = new ArrayList<UserResponse>();
+	
+		userList.stream().forEach(user -> {
+		userResponseList.add(new UserResponse(user));
+		});
+	
+		return userResponseList;
+	}
+	
+	@DeleteMapping("/delete/{username}")
+	public String deletePokemon(@PathVariable String username, @RequestBody DeleteRequest deleteRequest) {
+		return userService.deletePokemon(deleteRequest);
+	}
+	
+/*	@PostMapping("/addPokemon/{id}")
+	public PokemonResponse addPkm(@PathVariable Long id, @RequestBody InsertPokemonRequest insertPokemonRequest) {
+		PokemonEntity pkm = userService.insertPokemon(id, insertPokemonRequest);
+		
+		return new PokemonResponse(pkm);
 	}
 	
 	

@@ -12,10 +12,9 @@ import com.t1.entity.UserEntity;
 import com.t1.repository.PokemonRepository;
 import com.t1.repository.UserRepository;
 import com.t1.requestedto.CreatePokemonRequest;
-import com.t1.requestedto.CreatePokemonTypeRequest;
 import com.t1.requestedto.CreateUserRequest;
+import com.t1.requestedto.DeleteRequest;
 import com.t1.requestedto.InsertPokemonRequest;
-import com.t1.requestedto.UpdatePokemonRequest;
 import com.t1.requestedto.UpdateUserRequest;
 
 @Service
@@ -53,7 +52,56 @@ public class UserService {
 		return user;
 	}
 
+	public List<UserEntity> getAllUsers() {
+		return userRepository.findAll();
+	}
 	
+	public List<UserEntity> getByUser(String username){
+		return userRepository.findByUsername(username);
+	}
+	
+	public String deletePokemon(DeleteRequest deleteRequest) {
+		Composite composite = new Composite(); 
+		
+		composite.setUsername(deleteRequest.getUsername());
+		composite.setPkmName(deleteRequest.getPkmName());
+		
+		pokemonRepository.deleteById(composite);
+		
+		return "Pokemon Deleted";
+	}
+	
+	/*public PokemonEntity insertPokemon(Long id, InsertPokemonRequest insertPokemonRequest) {
+				
+		/*Composite composite = new Composite(); 
+		composite.setUsername(username);
+		composite.setPkmName(insertPokemonRequest.getPkmName());*/
+		
+		/*UserEntity user = userRepository.findById(id); 
+		
+		List<PokemonEntity> pkmList = new ArrayList<PokemonEntity>();
+
+		if (insertPokemonRequest.getPkmName() != null) {
+			for(InsertPokemonRequest createPkm : insertPokemonRequest.getPkmName()) {
+				PokemonEntity pokemon = new PokemonEntity();
+			
+				Composite composite = new Composite(); 
+				composite.setUsername(username);
+				composite.setPkmName(insertPokemonRequest.getPkmName());
+				
+				pokemon.setComposite(composite);
+				pokemon.setType(createPkm.getTypes());
+				
+				user.getPkmTeam().add(pokemon);
+			}	
+			
+			userRepository.save(user);
+		}
+
+		
+		return
+		
+	}
 	
 	/*public List<UserEntity> getAllUsers() {
 		return userRepository.findAll();

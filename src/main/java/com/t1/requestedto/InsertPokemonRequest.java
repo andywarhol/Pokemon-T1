@@ -1,7 +1,5 @@
 package com.t1.requestedto;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +7,7 @@ import lombok.Setter;
 @Getter
 public class InsertPokemonRequest {
 
-	private Long id; 
+	private String pkmName;
 	
-	private List<CreatePokemonRequest> pokemons;
+	private String types; 
 }

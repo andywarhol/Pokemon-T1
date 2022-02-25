@@ -12,8 +12,6 @@ import com.t1.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Composite> {
 
-	//List<UserEntity> findByUsername(String username);
-	
-	//List<UserEntity> findByPkmName(String pkmName);
+	List<UserEntity> findByUsername(String username);
 	
 }
