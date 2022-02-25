@@ -23,7 +23,7 @@ import com.t1.responsedto.ResponseDTO;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/authenticate/")
+@RequestMapping("/api/authenticate")
 public class UserDetailsController {
 
 	@Autowired
