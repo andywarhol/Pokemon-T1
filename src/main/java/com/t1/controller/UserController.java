@@ -79,6 +79,17 @@ public class UserController {
 		return new UserResponse(pkm);
 	}
 	
+	@GetMapping("/")
+	public String getSaludo() {
+		
+		return "Hola estoy funcionando";
+	}
+	
+	@PutMapping("/update")
+	public UserResponse updateDetails(@RequestBody UpdateUserRequest updateUserReq) {
+		UserEntity updateUser = userService.updateUser(updateUserReq);
+		return new UserResponse(updateUser);
+	}
 	
 	/*@GetMapping("/getAll")
 	public List<UserResponse> getAllUsers(){

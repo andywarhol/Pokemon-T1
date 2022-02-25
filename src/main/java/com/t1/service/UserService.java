@@ -15,6 +15,7 @@ import com.t1.requestedto.CreatePokemonRequest;
 import com.t1.requestedto.CreateUserRequest;
 import com.t1.requestedto.DeleteRequest;
 import com.t1.requestedto.InsertPokemonRequest;
+import com.t1.requestedto.UpdateUserRequest;
 
 @Service
 public class UserService {
@@ -93,5 +94,42 @@ public class UserService {
 
 		return user;
 	}
+	
+	
+	
+	public UserEntity updateUser(UpdateUserRequest updateUserRequest) {
+		UserEntity user = userRepository.getByUsername(updateUserRequest.getUsername());
+				
+		
+		if(updateUserRequest.getTeamName() != null &&
+				!updateUserRequest.getTeamName().isEmpty()) {
+			user.setTeamName(updateUserRequest.getTeamName());
+		} 
+		
+		if (updateUserRequest.getTrainerName() !=null && 
+				! updateUserRequest.getTrainerName().isEmpty()) {
+			user.setTrainerName(updateUserRequest.getTrainerName());
+		} 
+
+		if(updateUserRequest.getRol() != null &&
+				! updateUserRequest.getRol().isEmpty()) {
+			user.setRol(updateUserRequest.getRol());
+		} 
+		
+		if (updateUserRequest.getUsername() != null &&
+				! updateUserRequest.getUsername().isEmpty()) {
+			user.setUsername(updateUserRequest.getUsername());
+		} 
+		
+		if (updateUserRequest.getPassword() != null &&
+				! updateUserRequest.getPassword().isEmpty()) {
+			user.setPassword(updateUserRequest.getPassword());
+		}
+		
+		user = userRepository.save(user);
+		return user;
+	}
+	
+	
 	
 }
