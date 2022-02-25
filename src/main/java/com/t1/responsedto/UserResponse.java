@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.t1.entity.PokemonEntity;
 import com.t1.entity.UserEntity;
+import com.t1.requestedto.CreatePokemonRequest;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +26,6 @@ public class UserResponse {
 
 	private String username;
 	
-	private String password;
-	
 	private List<PokemonResponse> pokemons;
 	
 	public UserResponse(UserEntity userEntity) {
@@ -35,7 +34,6 @@ public class UserResponse {
 		this.trainerName = userEntity.getTrainerName();
 		this.rol = userEntity.getRol();
 		this.username = userEntity.getUsername();
-		this.password = userEntity.getPassword();
 		
 		if(userEntity.getPkmTeam()!=null) {
 			pokemons = new ArrayList<PokemonResponse>();
@@ -43,6 +41,9 @@ public class UserResponse {
 				pokemons.add(new PokemonResponse(pkm));
 			}
 		}
-	}
+		
+		
+		
+	}	
 	
 }

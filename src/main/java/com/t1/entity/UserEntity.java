@@ -2,8 +2,10 @@ package com.t1.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,30 +28,29 @@ import lombok.Setter;
 @Table(name="users")
 public class UserEntity {
 	
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 
-	@Column(name="team_name",length = 30, unique=true)
-	private String teamName;
-	
-	@Column(name="trainer_name", length = 30, unique=true)
-	private String trainerName;
-
-	@Column(name="rol")
-	private String rol;
-	
-	@Column(name="username", length = 30, unique=true)
+	@Column(name="user_name", length=30, unique=true)
 	private String username;
-	
-	@Column(name="user_password")
+
+	@Column(name="user_pass", length=30)
 	private String password;
 
-	@OneToMany(mappedBy = "user")
+	@Column(name="user_teamname", unique=true)
+	private String teamName;
+
+	@Column(name="user_trainername", length=30, unique=true)
+	private String trainerName;
+
+	@Column(name="user_role")
+	private String rol;
+	
+	@JoinColumn(name="Composite", referencedColumnName="id")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
 	private List<PokemonEntity> pkmTeam;
-
-
 	
 	public UserEntity(CreateUserRequest createUserRequest) {
 		this.teamName = createUserRequest.getTeamName();

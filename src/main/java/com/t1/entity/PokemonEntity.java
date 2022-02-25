@@ -1,8 +1,7 @@
 package com.t1.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedEntityGraphs;
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,18 +26,20 @@ import lombok.Setter;
 @Table(name="pokemon_teams")
 @AllArgsConstructor
 public class PokemonEntity {
-	@Id
+
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pkm_id")
-	private Long id;
+	private Long id;*/
 	
-	@Column(name="pkm_name", unique = true)
-	private String pkmName;
-
-	@ManyToOne
+	@EmbeddedId
+	private Composite composite;
+	
+	@Column(name="pkm_type")
+	private String type; 
+	
+	/*@ManyToOne
 	@JoinColumn(name = "pkm_team")
-	private UserEntity user;
+	private UserEntity user;*/
 	
-	@OneToMany(mappedBy = "pkm", orphanRemoval = true)
-	private List<PokemonTypeEntity> types;
 }

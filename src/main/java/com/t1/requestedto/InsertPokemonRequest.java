@@ -5,12 +5,9 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
-public class CreatePokemonRequest {
-	
-	private String pkmName;
-	
-	private String types;
+@Getter
+public class InsertPokemonRequest {
 
+	private List<CreatePokemonRequest> pokemons;
 }
