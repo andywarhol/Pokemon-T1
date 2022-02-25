@@ -41,7 +41,7 @@ import com.t1.service.UserService;
 
 
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 //@CrossOrigin("*", maxAge=3600)
 @RestController
 @RequestMapping("/api/user/")
