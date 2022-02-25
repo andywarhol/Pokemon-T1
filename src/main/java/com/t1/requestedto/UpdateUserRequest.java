@@ -26,9 +26,9 @@ public class UpdateUserRequest {
 	
 	private String username;
 	
+	private String username; 
+	
 	private String password;
-  	
-	private List<CreatePokemonRequest> pokemons;
 
 
 }
